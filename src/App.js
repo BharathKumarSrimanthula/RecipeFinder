@@ -1,10 +1,10 @@
 // import "./styles.css";
-import MealFinder from "./MealFinder";
+import RecipeFinder from "./RecipeFinder";
 
 export default function App() {
   return (
     <div className="App">
-      <MealFinder />
+      <RecipeFinder />
     </div>
   );
 }

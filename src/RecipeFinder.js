@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import useDebounce from "./useDebounce"; // Import the debounce hook
+import './RecipeFinder.css'; // Import the CSS file
 
-const MealFinder = () => {
+const RecipeFinder = () => {
   const [meals, setMeals] = useState([]); // All meals fetched from API
   const [filteredMeals, setFilteredMeals] = useState([]); // Meals after filtering based on search
   const [searchTerm, setSearchTerm] = useState(""); // State to store the search term
@@ -66,20 +67,20 @@ const MealFinder = () => {
         placeholder="Search for meals..."
         value={searchTerm}
         onChange={handleSearch}
-        style={styles.searchInput}
+        className="search-input" // Use the CSS class
       />
 
       {/* Meal cards */}
-      <div style={styles.mealList}>
+      <div className="meal-list"> {/* Use the CSS class */}
         {filteredMeals && filteredMeals.length > 0 ? (
           filteredMeals.map((meal) => (
-            <div key={meal.idMeal} style={styles.mealCard}>
+            <div key={meal.idMeal} className="meal-card"> {/* Use the CSS class */}
               <img
                 src={meal.strMealThumb}
                 alt={meal.strMeal}
-                style={styles.mealImage}
+                className="meal-image" // Use the CSS class
               />
-              <div style={styles.mealName}>{meal.strMeal}</div>
+              <div className="meal-name">{meal.strMeal}</div> {/* Use the CSS class */}
             </div>
           ))
         ) : (
@@ -90,44 +91,4 @@ const MealFinder = () => {
   );
 };
 
-// Basic inline styles
-const styles = {
-  searchInput: {
-    padding: "10px",
-    fontSize: "16px",
-    border: "1px solid #ccc",
-    borderRadius: "4px",
-    marginBottom: "20px",
-    maxWidth: "500px", // Set a maximum width for the search input
-    width: "50%", // Default width to 50%
-    marginLeft: "auto", // Center the input horizontally
-    marginRight: "auto",
-  },
-
-  mealList: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-  },
-  mealCard: {
-    textAlign: "center",
-    margin: "10px",
-    width: "200px",
-    border: "1px solid #ddd",
-    borderRadius: "8px",
-    padding: "10px",
-    boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-  },
-  mealImage: {
-    width: "100%",
-    height: "auto",
-    borderRadius: "4px",
-  },
-  mealName: {
-    fontSize: "16px",
-    fontWeight: "bold",
-    marginTop: "10px",
-  },
-};
-
-export default MealFinder;
+export default RecipeFinder;
