@@ -1,12 +1,12 @@
-# Meal Finder Application
+# Recipe Finder Application
 
 ## Overview
 
-The **Meal Finder** is a React-based application that allows users to search for meals based on a search term. It fetches meal data from TheMealDB API and displays the results in a clean, responsive UI. The application incorporates debounced search functionality to optimize user experience during typing.
+The **Recipe Finder** is a React-based application that allows users to search for meals based on a search term. It fetches recipe data from TheMealDB API and displays the results in a clean, responsive UI. The application incorporates debounced search functionality to optimize user experience during typing.
 
 ## Features
 
-- Search for meals by name using a text input field.
+- Search for recipes by name using a text input field.
 - Display meals with images and names in a grid layout.
 - Loading and error states to provide feedback to users.
 - Debounced search to reduce unnecessary API calls while typing.
@@ -17,7 +17,7 @@ The **Meal Finder** is a React-based application that allows users to search for
 - **React**: For building the user interface.
 - **useState** and **useEffect**: For managing state and handling side effects.
 - **Custom Debounce Hook**: To implement debounced search functionality.
-- **TheMealDB API**: For fetching meal data.
+- **TheMealDB API**: For fetching recipe data.
 
 ## Setup & Installation
 
