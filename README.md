@@ -23,7 +23,7 @@ The **Meal Finder** is a React-based application that allows users to search for
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/BharathKumarSrimanthula/Recipe-finder
+   git clone https://github.com/BharathKumarSrimanthula/RecipeFinder
 
 2. Install the dependencies:
 
