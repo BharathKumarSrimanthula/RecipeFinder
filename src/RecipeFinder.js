@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import useDebounce from "./useDebounce"; // Import the debounce hook
 import './RecipeFinder.css'; // Import the CSS file
 
-const RecipeFinder = () => {
+const RecipeFind = () => {
   const [meals, setMeals] = useState([]); // All meals fetched from API
   const [filteredMeals, setFilteredMeals] = useState([]); // Meals after filtering based on search
   const [searchTerm, setSearchTerm] = useState(""); // State to store the search term
@@ -11,6 +11,9 @@ const RecipeFinder = () => {
   const [error, setError] = useState(null); // Error state
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500); // Use the custom debounce hook
+
+  const [currentPage, setCurrentPage] = useState(1); // Pagination state
+  const mealsPerPage = 10; // Number of meals per page
 
   // Fetch meals when the component mounts
   useEffect(() => {
@@ -49,6 +52,30 @@ const RecipeFinder = () => {
     setSearchTerm(event.target.value); // Set the search term
   };
 
+  // Paginate meals
+  const indexOfLastMeal = currentPage * mealsPerPage;
+  const indexOfFirstMeal = indexOfLastMeal - mealsPerPage;
+  const currentMeals = filteredMeals.slice(indexOfFirstMeal, indexOfLastMeal);
+
+  // Handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Handle next page
+  const handleNextPage = () => {
+    if (currentPage < Math.ceil(filteredMeals.length / mealsPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  // Handle previous page
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -71,24 +98,40 @@ const RecipeFinder = () => {
       />
 
       {/* Meal cards */}
-      <div className="meal-list"> {/* Use the CSS class */}
-        {filteredMeals && filteredMeals.length > 0 ? (
-          filteredMeals.map((meal) => (
-            <div key={meal.idMeal} className="meal-card"> {/* Use the CSS class */}
+      <div className="meal-list">
+        {currentMeals && currentMeals.length > 0 ? (
+          currentMeals.map((meal) => (
+            <div key={meal.idMeal} className="meal-card">
               <img
                 src={meal.strMealThumb}
                 alt={meal.strMeal}
-                className="meal-image" // Use the CSS class
+                className="meal-image"
               />
-              <div className="meal-name">{meal.strMeal}</div> {/* Use the CSS class */}
+              <div className="meal-name">{meal.strMeal}</div>
             </div>
           ))
         ) : (
           <div>No meals found</div>
         )}
       </div>
+
+      {/* Pagination Controls */}
+      <div className="pagination">
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>
+          Previous
+        </button>
+        <span>
+          Page {currentPage} of {Math.ceil(filteredMeals.length / mealsPerPage)}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === Math.ceil(filteredMeals.length / mealsPerPage)}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
 
-export default RecipeFinder;
+export default RecipeFind;
