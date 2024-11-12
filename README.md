@@ -25,14 +25,10 @@ The **Meal Finder** is a React-based application that allows users to search for
    ```bash
    git clone https://github.com/BharathKumarSrimanthula/recipe-finder
 
-2. Navigate to the project directory:
-
-   cd meal-finder
-
-3. Install the dependencies:
+2. Install the dependencies:
 
   npm install
 
-4. Start the development server:
+3. Start the development server:
 
    npm start
