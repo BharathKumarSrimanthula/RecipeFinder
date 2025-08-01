@@ -70,7 +70,7 @@ const RecipeFinder = () => {
         className="search-input" // Use the CSS class
       />
 
-      {/* Meal cards */}
+      {/* Meal cards */} 
       <div className="meal-list"> {/* Use the CSS class */}
         {filteredMeals && filteredMeals.length > 0 ? (
           filteredMeals.map((meal) => (
