@@ -64,7 +64,7 @@ const RecipeFinder = () => {
       {/* Search input */}
       <input
         type="text"
-        placeholder="Search for meals..."
+        placeholder="Search for meals"
         value={searchTerm}
         onChange={handleSearch}
         className="search-input" // Use the CSS class
